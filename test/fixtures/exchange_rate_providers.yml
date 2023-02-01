@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  source_currency: MyString
+  source_url: MyString
+
+two:
+  name: MyString
+  type: 
+  source_currency: MyString
+  source_url: MyString
