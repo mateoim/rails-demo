@@ -2,8 +2,8 @@
 
 module ExchangeRateProviders
   class CzechNationalBankProvider < Service
-    def initialize(url)
-      @url = url
+    def initialize(provider)
+      @provider = provider
     end
 
     def call
@@ -13,7 +13,7 @@ module ExchangeRateProviders
     private
 
     def fetch_exchange_rate
-      response = DataFetcher.call @url
+      response = DataFetcher.call @provider.source_url
       lines = response.split /\n/
       return if lines.empty?
 
@@ -21,8 +21,18 @@ module ExchangeRateProviders
       data = []
 
       lines[2..-1]&.each { |line|
-        parts = line.split
-        data << parts.join(' ')
+        parts = line.split /\|/
+
+        params = {
+          :currency => parts[3],
+          :amount => parts[2],
+          :value => parts[4],
+          :exchange_rate_provider_id => @provider.id,
+          :published_at => date
+        }
+
+        exchange_rate = ExchangeRate.new params
+        data << exchange_rate
       }
 
       data
