@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :exchange_rate_providers do
     resources :exchange_rates
