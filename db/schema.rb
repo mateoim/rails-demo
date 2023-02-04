@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_01_181049) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_04_165323) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,7 +31,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_01_181049) do
     t.bigint "exchange_rate_provider_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["currency"], name: "index_exchange_rates_on_currency"
     t.index ["exchange_rate_provider_id"], name: "index_exchange_rates_on_exchange_rate_provider_id"
+    t.index ["published_at"], name: "index_exchange_rates_on_published_at"
   end
 
   add_foreign_key "exchange_rates", "exchange_rate_providers"
