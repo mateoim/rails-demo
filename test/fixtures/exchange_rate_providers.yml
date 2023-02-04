@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  type: 
+  type:
   source_currency: MyString
   source_url: MyString
 
 two:
   name: MyString
-  type: 
+  type:
   source_currency: MyString
   source_url: MyString

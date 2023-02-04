@@ -3,6 +3,5 @@
 class ExchangeRateProvider < ApplicationRecord
   has_many :exchange_rates, dependent: :destroy
 
-  def fetch_data
-  end
+  def fetch_data; end
 end

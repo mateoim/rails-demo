@@ -17,7 +17,7 @@ class ExchangeRateProvidersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create exchange_rate_provider" do
     assert_difference("ExchangeRateProvider.count") do
-      post exchange_rate_providers_url, params: { exchange_rate_provider: {  } }
+      post exchange_rate_providers_url, params: { exchange_rate_provider: {} }
     end
 
     assert_redirected_to exchange_rate_provider_url(ExchangeRateProvider.last)
@@ -34,7 +34,7 @@ class ExchangeRateProvidersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update exchange_rate_provider" do
-    patch exchange_rate_provider_url(@exchange_rate_provider), params: { exchange_rate_provider: {  } }
+    patch exchange_rate_provider_url(@exchange_rate_provider), params: { exchange_rate_provider: {} }
     assert_redirected_to exchange_rate_provider_url(@exchange_rate_provider)
   end
 

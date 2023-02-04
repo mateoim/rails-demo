@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ExchangeRatesController < ApplicationController
-  before_action :set_exchange_rate, only: [ :show ]
+  before_action :set_exchange_rate, only: [:show]
   before_action :set_exchange_rate_provider
 
   # GET /exchange_rates or /exchange_rates.json
@@ -30,9 +30,7 @@ class ExchangeRatesController < ApplicationController
   end
 
   def get_exchange_rates(date = nil)
-    if date.nil?
-      date = @exchange_rate_provider.exchange_rates.order('published_at DESC').first&.published_at
-    end
+    date = @exchange_rate_provider.exchange_rates.order('published_at DESC').first&.published_at if date.nil?
 
     return [] if date.nil? # if date is still nil, there are no entries and the method can exit
 
