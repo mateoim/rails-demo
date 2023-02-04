@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+
+<style>
+    table, th, td {
+        border:1px solid black;
+    }
+</style>
+
+<h1>Exchange rate providers</h1>
+
+<div id="exchange_rate_providers">
+  <table>
+    <tr>
+      <th>Exchange Rate Provider</th>
+      <th>Currency</th>
+    </tr>
+    <% @exchange_rate_providers.each do |provider| %>
+      <%= render partial: 'exchange_rate_providers/exchange_rate_provider', object: provider %>
+    <% end %>
+  </table>
+</div>

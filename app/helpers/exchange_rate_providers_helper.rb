@@ -1,0 +1,2 @@
+module ExchangeRateProvidersHelper
+end

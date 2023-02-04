@@ -5,6 +5,10 @@ class CzechNationalBank < ExchangeRateProvider
     provider_service.call self
   end
 
+  def self.model_name
+    ExchangeRateProvider.model_name
+  end
+
   private
 
   def provider_service

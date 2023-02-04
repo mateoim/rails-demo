@@ -1,0 +1,26 @@
+<p style="color: green"><%= notice %></p>
+
+<style>
+    table, th, td {
+        border:1px solid black;
+    }
+</style>
+
+<h1><%= @exchange_rate_provider.name %></h1>
+
+<div id="exchange_rates">
+  <p>Conversion rates for currency: <%= @exchange_rate_provider.source_currency %></p>
+
+  <table>
+    <tr>
+      <th>Currency</th>
+      <th>Amount</th>
+      <th>Rate</th>
+    </tr>
+    <% @exchange_rates.each do |rate| %>
+      <%= render partial: 'exchange_rates/exchange_rate', object: rate %>
+    <% end %>
+  </table>
+
+  <p><%= link_to "Back to exchange rate providers", exchange_rate_providers_path %></p>
+</div>
