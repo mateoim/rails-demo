@@ -6,7 +6,7 @@ class ExchangeRatesController < ApplicationController
 
   # GET /exchange_rates or /exchange_rates.json
   def index
-    @exchange_rates = get_exchange_rates params[:date]
+    @exchange_rates = get_exchange_rates(params[:date], params[:currencies])
   end
 
   # GET /exchange_rates/1 or /exchange_rates/1.json
@@ -29,12 +29,15 @@ class ExchangeRatesController < ApplicationController
     @exchange_rate_provider = ExchangeRateProvider.find(params[:exchange_rate_provider_id])
   end
 
-  def get_exchange_rates(date = nil)
+  def get_exchange_rates(date = nil, currencies = nil)
     date = @exchange_rate_provider.exchange_rates.order('published_at DESC').first&.published_at if date.nil?
 
     return [] if date.nil? # if date is still nil, there are no entries and the method can exit
 
-    @exchange_rate_provider.exchange_rates.published_at(date)
+    if currencies.nil?
+      @exchange_rate_provider.exchange_rates.published_at(date)
+    else
+      @exchange_rate_provider.exchange_rates.published_at(date).currency(currencies.split(/,/).map(&:upcase))
+    end
   end
-
 end
