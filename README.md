@@ -29,6 +29,6 @@ Once installed, run Redis server using `redis-server` and run Sidekiq using `bun
 The application runs on `localhost:3000` by default.
 The homepage displays a list of available exchange rate providers and each name is a link to that provider's page.
 Provider's page displays the latest exchange rates.
-There are two optional query parameters no provider's page:
+There are two optional query parameters on the provider's page:
 1. `date` to select the date for which to display exchange rates
 2. `currencies` to select currencies to display. Currencies are a list of comma separated currency codes. Any currencies not provided by the provider will be skipped.
