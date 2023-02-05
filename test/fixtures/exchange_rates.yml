@@ -1,15 +1,24 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  currency: MyString
+  currency: HRK
   amount: 1
   value: 1.5
   published_at: 2023-02-01
   exchange_rate_provider: one
+  exchange_rate_provider_id: 1
 
 two:
-  currency: MyString
+  currency: EUR
+  amount: 1
+  value: 1.5
+  published_at: 2023-03-01
+  exchange_rate_provider: one
+  exchange_rate_provider_id: 1
+
+three:
+  currency: USD
   amount: 1
   value: 1.5
   published_at: 2023-02-01
-  exchange_rate_provider: two
+  exchange_rate_provider_id: 2

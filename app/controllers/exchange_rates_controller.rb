@@ -12,7 +12,7 @@ class ExchangeRatesController < ApplicationController
   # GET /exchange_rates/1 or /exchange_rates/1.json
   def show
     if @exchange_rate.exchange_rate_provider_id.to_s != params[:exchange_rate_provider_id]
-      render file: "#{Rails.root}/public/404.html", layout: false
+      render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found
       return
     end
 

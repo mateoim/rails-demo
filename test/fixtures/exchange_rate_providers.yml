@@ -1,13 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  type:
-  source_currency: MyString
-  source_url: MyString
-
-two:
-  name: MyString
-  type:
-  source_currency: MyString
-  source_url: MyString
+  name: Czech National Bank
+  type: CzechNationalBank
+  source_currency: CZK
+  source_url: https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt
