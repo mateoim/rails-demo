@@ -2,6 +2,7 @@
 
 require 'net/http'
 
+# A Service that retrieves data from the given url using GET HTTP method.
 class DataFetcher < Service
   def initialize(source_url)
     @url = source_url

@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
+# Controller class for ExchangeRates. It can provide a simple HTML GUI or serve as an API by providing data in JSON
+# format.
 class ExchangeRatesController < ApplicationController
   before_action :set_exchange_rate, only: [:show]
   before_action :set_exchange_rate_provider
 
   # GET /exchange_rates or /exchange_rates.json
+  # Optional query parameters:
+  # date - date for which to fetch the exchange rates, if none is specified fetch the latest exchange rates.
+  # currencies - a comma separated list of currency codes to fetch. If a currency is missing, it is ignored.
   def index
     @exchange_rates = get_exchange_rates(params[:date], params[:currencies])
   end

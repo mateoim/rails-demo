@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# A Sidekiq Job that fetches the data for the given ExchangeRateProvider for the current day. If entries already exist
+# for the current day, it will update entries with changes and save missing ones if there are any.
 class ExchangeRateProviderJob
   include Sidekiq::Job
 

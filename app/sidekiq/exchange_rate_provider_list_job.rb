@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# A Sidekiq Job that enqueues an ExchangeRateProviderJob for every ExchangeRateProvider.
 class ExchangeRateProviderListJob
   include Sidekiq::Job
 

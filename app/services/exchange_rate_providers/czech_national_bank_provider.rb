@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 module ExchangeRateProviders
+
+  # A Service that fetches data for ExchangeRateProviders type CzechNationalBank and parses it into ExchangeRates,
+  # but doesn't save them.
+  # It takes an optional parameter date to fetch ExchangeRates for the given date.
+  # Returns an array of ExchangeRates.
   class CzechNationalBankProvider < Service
     def initialize(provider, date)
       @provider = provider
