@@ -8,4 +8,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'exchange_rate_providers#index'
+
+  require 'sidekiq/web'
+  require 'sidekiq/cron/web'
+
+  mount Sidekiq::Web => '/sidekiq'
 end
