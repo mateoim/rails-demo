@@ -32,15 +32,16 @@ class ExchangeRateProviderJob
       old_exchange_rates.each do |old_entry|
         next unless entry.currency == old_entry.currency
 
-        next if entry.value == old_entry.value
+        found = true
+
+        break if entry.value == old_entry.value
 
         old_entry.value = entry.value
         old_entry.save!
-        found = true
         break
       end
 
-      next unless found
+      next if found
 
       entry.save!
     end
