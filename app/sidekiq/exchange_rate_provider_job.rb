@@ -14,7 +14,7 @@ class ExchangeRateProviderJob
 
     # if no records exist for this date, save them
     if existing_records.empty?
-      data.each(&:save!)
+      ExchangeRate.insert_all!(data.map { |n| n.attributes.compact })
       return
     end
 
