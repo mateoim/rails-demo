@@ -16,6 +16,7 @@
       <th>Currency</th>
       <th>Amount</th>
       <th>Rate</th>
+      <th>Date published</th>
     </tr>
     <% @exchange_rates.each do |rate| %>
       <%= render partial: 'exchange_rates/exchange_rate', object: rate %>
