@@ -7,7 +7,7 @@ A simple Ruby on Rails test app.
 Configuration:
 
 1. Configure database settings in `config/database.yml`
-2. Create an `.env` file that should have Redis url defined as `REDIS_URL`
+2. Create an `.env` file that should have Redis url defined as `REDIS_URL`, the default is `redis://redis:6379/0`
 
 ### Run using Docker
 
