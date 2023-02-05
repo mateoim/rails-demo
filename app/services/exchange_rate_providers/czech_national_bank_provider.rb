@@ -2,8 +2,9 @@
 
 module ExchangeRateProviders
   class CzechNationalBankProvider < Service
-    def initialize(provider)
+    def initialize(provider, date)
       @provider = provider
+      @date = date
     end
 
     def call
@@ -13,7 +14,11 @@ module ExchangeRateProviders
     private
 
     def fetch_exchange_rate
-      response = DataFetcher.call @provider.source_url
+      url = @provider.source_url
+
+      url = "#{url}?date=#{@date.strftime('%d.%m.%Y.')}" unless @date.nil?
+
+      response = DataFetcher.call url
       lines = response.split(/\n/)
       return [] if lines.empty?
 

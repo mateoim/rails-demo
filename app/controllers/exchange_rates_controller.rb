@@ -30,14 +30,47 @@ class ExchangeRatesController < ApplicationController
   end
 
   def get_exchange_rates(date = nil, currencies = nil)
+    @date = calculate_date(date)
+
+    if @date.nil?
+      @date = Date.today
+      fetch_data
+    end
+
+    data = @exchange_rate_provider.exchange_rates.published_at(@date)
+
+    if data.empty?
+      fetch_data
+      data = @exchange_rate_provider.exchange_rates.published_at(@date)
+    end
+
+    data = data.currency(currencies.split(/,/).map(&:upcase)) unless currencies.nil?
+
+    data
+  end
+
+  def calculate_date(date)
+    date = Date.parse date unless date.nil?
     date = @exchange_rate_provider.exchange_rates.order('published_at DESC').first&.published_at if date.nil?
 
-    return [] if date.nil? # if date is still nil, there are no entries and the method can exit
+    return if date.nil?
 
-    if currencies.nil?
-      @exchange_rate_provider.exchange_rates.published_at(date)
-    else
-      @exchange_rate_provider.exchange_rates.published_at(date).currency(currencies.split(/,/).map(&:upcase))
-    end
+    return date.prev_occurring(:friday) if date.on_weekend?
+
+    date
+  end
+
+  def fetch_data
+    data = @exchange_rate_provider.fetch_data @date
+
+    return if data.empty?
+
+    @date = data.first.published_at
+
+    existing = @exchange_rate_provider.exchange_rates.published_at(@date)
+
+    return unless existing.empty?
+
+    ExchangeRate.insert_all!(data.map { |n| n.attributes.compact })
   end
 end

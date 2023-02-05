@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class CzechNationalBank < ExchangeRateProvider
-  def fetch_data
-    provider_service.call self
+  def fetch_data(date = nil)
+    provider_service.call(self, date)
   end
 
   def self.model_name
